@@ -1,0 +1,29 @@
+.start-page {
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 485px;
+    height: 100vh;
+    background-color: var(--background-black);
+  }
+
+  &__identity {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__emblem {
+    width: 136px;
+    height: 136px;
+  }
+
+  &__logo {
+    width: 192px;
+    height: 36px;
+    margin-top: 22px;
+  }
+}

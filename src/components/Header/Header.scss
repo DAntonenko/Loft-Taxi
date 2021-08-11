@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 102px;
+  padding: 0 50px 0 27px;
+  background-color: var(--background-black);
+  z-index: 100;
+
+  &__emblem {
+    width: 61px;
+    height: 61px;
+  }
+
+  &__logo {
+    width: 192px;
+    height: 36px;
+    margin-left: 16px;
+  }
+
+  &__navigation {
+    margin-left: auto;
+  }
+
+  &__navigation-link {
+    font-size: 21px;
+    line-height: 25px;
+    color: var(--white);
+
+    &:not(:last-of-type) {
+      margin-right: 42px;
+    }
+
+    &--active {
+      color: var(--yellow);
+    }
+  }
+}
