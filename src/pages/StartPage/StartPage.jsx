@@ -4,13 +4,13 @@ import logo from '../../assets/logo.svg';
 
 import './StartPage.scss';
 
-export class StartPage extends React.Component {
+class StartPage extends React.Component {
   state = {
     currentMode: 'enter',
   }
 
   render() {
-    return (
+        return (
       <div className='start-page'>
        <section className='start-page__sidebar'>
          <div className='start-page__identity'>
@@ -76,3 +76,5 @@ export class StartPage extends React.Component {
     )
   }
 }
+
+export default StartPage;

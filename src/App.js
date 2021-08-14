@@ -1,4 +1,4 @@
-import { StartPage } from './pages/StartPage/StartPage';
+import StartPage from './pages/StartPage/StartPage';
 
 
 import './common_scss/App.scss';
@@ -6,7 +6,8 @@ import './common_scss/App.scss';
 function App() {
   return (
     <div className="App">
-      <StartPage />
+      <h1 className='visually-hidden'>Loft-Taxi</h1>
+      <StartPage name='aa!'/>
     </div>
   );
 }
