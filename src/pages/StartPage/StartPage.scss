@@ -1,34 +1,6 @@
 .start-page {
   display: flex;
 
-  &__sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 485px;
-    height: 100vh;
-    background-color: var(--background-black);
-  }
-
-  &__identity {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  &__emblem {
-    width: 136px;
-    height: 136px;
-  }
-
-  &__logo {
-    width: 192px;
-    height: 36px;
-    margin-top: 22px;
-  }
-
   &__form-field {
     position: relative;
     width: 100%;
@@ -51,7 +23,7 @@
     border-radius: 20px;
     box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
 
-    &--enter {
+    &--login {
       padding-top: 56px;
       padding-bottom: 56px;
     }
@@ -88,16 +60,22 @@
     align-self: flex-end;
     color: var(--gray-1);
     margin-top: 12px;
+    margin-bottom: 46px;
+  }
+
+  &__submit-button {
+    margin-top: 50px;
   }
 
   &__mode-change {
     font-size: 16px;
     line-height: 19px;
     color: var(--gray-1);
+    margin-top: 33px;
   }
 
   &__mode-change-button {
     margin-left: 8px;
-    color: var(--yellow);
+    color: var(--yellow-1);
   }
 }

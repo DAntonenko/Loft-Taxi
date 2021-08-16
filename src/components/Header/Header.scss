@@ -22,17 +22,23 @@
     margin-left: auto;
   }
 
-  &__navigation-link {
+  &__navigation-list {
+    display: flex;
+  }
+
+  &__navigation-list-item {
+    &:not(:last-of-type) {
+      margin-right: 42px;
+    }
+  }
+
+  &__navigation-button {
     font-size: 21px;
     line-height: 25px;
     color: var(--white);
 
-    &:not(:last-of-type) {
-      margin-right: 42px;
-    }
-
     &--active {
-      color: var(--yellow);
+      color: var(--yellow-1);
     }
   }
 }
