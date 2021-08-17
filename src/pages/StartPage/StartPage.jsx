@@ -1,5 +1,6 @@
 import React from 'react';
 import IdentityPanel from '../../components/IdentityPanel/IdentityPanel';
+import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 
 import './StartPage.scss';
@@ -30,58 +31,89 @@ class StartPage extends React.Component {
          {this.state.currentMode === 'login' && 
             <form className='start-page__form start-page__form--login' onSubmit={this.handleLoginSubmit}>
               <h2 className='start-page__form-title'>Войти</h2>
-              <label className='start-page__label'>
-                Email
-                <input className='start-page__input' type='email' name='email' placeholder='mail@mail.ru' />
-              </label>
-              <label className='start-page__label'>
-                Пароль
-                <input className='start-page__input' type='password' name='password' placeholder='*************' />
-              </label>
-              <button
+              <Input
+                className='start-page__input'
+                label='Email'
+                id='email'
+                type='email'
+                name='email'
+                placeholder='mail@mail.ru'
+              />
+              <Input
+                className='start-page__input'
+                label='Пароль'
+                id='password'
+                type='password'
+                name='password'
+                placeholder='*************'
+              />
+              <Button
                 className = 'start-page__forgot-password-button'
                 type='button'
-              >
-                Забыли пароль?
-              </button>
-              <Button text='Войти' type='submit' onClick = {passedClickHandler} />
+                text='Забыли пароль?'
+              />
+              <Button
+                text='Войти'
+                type='submit'
+                standardAppearance
+                onClick = {passedClickHandler}
+              />
               <p className='start-page__mode-change'>
                 Новый пользователь?
-                <button
+                <Button
                   className='start-page__mode-change-button'
                   type='button'
+                  text='Регистрация'
                   onClick={() => this.setState({currentMode: 'registration'})}
-                >
-                  Регистрация
-                </button>
+                />
               </p>
             </form>
          }
          {this.state.currentMode === 'registration' &&
             <form className='start-page__form start-page__form--registration'>
               <h2 className='start-page__form-title'>Регистрация</h2>
-              <label className='start-page__label'>
-                Email*
-                <input className='start-page__input' type='email' placeholder='mail@mail.ru' />
-              </label>
-              <label className='start-page__label'>
-                Как вас зовут?*
-                <input className='start-page__input' type='text' placeholder='Петр Александрович' />
-              </label>
-              <label className='start-page__label'>
-                Придумайте пароль*
-                <input className='start-page__input' type='password' placeholder='*************' />
-              </label>
-              <Button className='start-page__submit-button' text='Зарегистрироваться' type='submit' onClick = {passedClickHandler} />
+              <Input
+                className='start-page__input'
+                label='Email'
+                required
+                id='email'
+                type='email'
+                name='email'
+                placeholder='mail@mail.ru'
+              />
+              <Input
+                className='start-page__input'
+                label='Как вас зовут?'
+                required
+                id='name'
+                type='text'
+                name='name'
+                placeholder='mail@mail.ru'
+              />
+              <Input
+                className='start-page__input'
+                label='Придумайте пароль'
+                required
+                id='password'
+                type='password'
+                name='password'
+                placeholder='*************'
+              />
+              <Button
+                className='start-page__submit-button'
+                text='Зарегистрироваться'
+                type='submit'
+                standardAppearance
+                onClick = {passedClickHandler}
+              />
               <p className='start-page__mode-change'>
                 Уже зарегистрированны?
-                <button
+                <Button
                   className='start-page__mode-change-button'
                   type='button'
+                  text='Войти'
                   onClick={() => this.setState({currentMode: 'login'})}
-                >
-                  Войти
-                </button>
+                />
               </p>
             </form>
          }
