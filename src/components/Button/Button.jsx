@@ -1,13 +1,22 @@
 import React from 'react';
+import PropTypes  from 'prop-types';
 
 import './Button.scss';
 
 const Button = ({ className, standardAppearance, text, type, disabled, onClick }) => {
-  const VALID_TYPES = ['button', 'reset', 'submit'];
+  Button.propTypes = {
+    className: PropTypes.string,
+    standardAppearance: PropTypes.bool,
+    text: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['button', 'reset', 'submit']).isRequired,
+    disabled: PropTypes.string,
+    onClick: PropTypes.func,
+  }
+
   return (
     <button
       className={`${standardAppearance && 'button'} ${className ? className : ''}`}
-      type={VALID_TYPES.includes(type) ? type : 'button'}
+      type={type}
       disabled={disabled}
       onClick = {onClick}
     >

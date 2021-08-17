@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import './Header.scss';
 
 const Header = ({ passedFromAppClickHandler, passedOnMapClickHandler, passedOnProfileClickHandler }) => {
+
   const MENU_ITEMS = [
     {
       onClickHandler: passedOnMapClickHandler,
