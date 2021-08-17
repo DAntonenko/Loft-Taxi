@@ -2,7 +2,7 @@ import React from 'react';
 import StartPage from './pages/StartPage/StartPage';
 import OrderPage from './pages/OrderPage/OrderPage';
 
-import './common_scss/App.scss';
+import './common_styles/App.scss';
 
 class App extends React.Component {
   state = {currentPage: 'startPage'}
@@ -19,7 +19,7 @@ class App extends React.Component {
     }
 
     return (
-      <div className="App">
+      <div className='App'>
         <h1 className='visually-hidden'>Loft-Taxi</h1>
         { PAGES[currentPage] }
       </div>

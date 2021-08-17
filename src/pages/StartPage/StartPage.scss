@@ -41,19 +41,8 @@
     margin-bottom: 32px;
   }
 
-  &__label {
-    width: 100%;
-    font-weight: 700;
-    margin-top: 25px;
-  }
-
   &__input {
-    display: block;
-    width: 100%;
-    padding: 10px 0;
-    border: none;
-    border-radius: 0;
-    border-bottom: 1px solid var(--gray-2);
+    margin-top: 25px;
   }
 
   &__forgot-password-button {
