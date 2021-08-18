@@ -1,5 +1,5 @@
 import React from 'react';
-import { Consumer } from '../../App';
+import { Consumer } from '../../context';
 import IdentityPanel from '../../components/IdentityPanel/IdentityPanel';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
@@ -56,7 +56,7 @@ class StartPage extends React.Component {
                   text='Войти'
                   type='submit'
                   standardAppearance
-                  onClick = {value[0].onSubmitButtonClick}
+                  onClick = {value.onSubmitButtonClick}
                 />
               }
               </Consumer>
@@ -103,11 +103,11 @@ class StartPage extends React.Component {
               />
               <Consumer>{value =>
                 <Button
-                className='start-page__submit-button'
+                  className='start-page__submit-button'
                   text='Зарегистрироваться'
                   type='submit'
                   standardAppearance
-                  onClick = {value[0].onSubmitButtonClick}
+                  onClick = {value.onSubmitButtonClick}
                 />
               }
               </Consumer>

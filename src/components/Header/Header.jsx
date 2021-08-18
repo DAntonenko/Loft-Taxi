@@ -1,5 +1,5 @@
 import React from 'react';
-import { Consumer } from '../../App';
+import { Consumer } from '../../context';
 import emblem from '../../assets/emblem.svg';
 import logo from '../../assets/logo.svg';
 import Button from '../Button/Button';
@@ -7,9 +7,6 @@ import Button from '../Button/Button';
 import './Header.scss';
 
 const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler }) => {
-
-  // Here I try to get context's value in a foolish way
-  const exitButtonHandler = <Consumer>{value => value[1].onExitButtonClick}</Consumer>
 
   const MENU_ITEMS = [
     {
@@ -21,7 +18,7 @@ const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler }) => {
       text: 'Профиль',
     },
     {
-      onClickHandler: exitButtonHandler, // Here the value from context must be
+      onClickHandler: null,
       text: 'Выйти',
     },
   ]
@@ -43,12 +40,15 @@ const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler }) => {
           {MENU_ITEMS.map((item) => {
             return (
               <li className='header__navigation-list-item' key={item.text}>
-                <Button
-                  className='header__navigation-button'
-                  type='button'
-                  text={item.text}
-                  onClick={item.onClickHandler}
-                />
+                <Consumer>{value => 
+                  <Button
+                    className='header__navigation-button'
+                    type='button'
+                    text={item.text}
+                    onClick={item.onClickHandler || value.onExitButtonClick}
+                  />
+                }
+                </Consumer>
               </li>
             )
           })}

@@ -14,7 +14,6 @@ class OrderPage extends React.Component {
     return (
       <>
         <Header
-          // passedFromAppClickHandler = {passedClickHandler}
           passedOnMapClickHandler = {onMapClickHandler}
           passedOnProfileClickHandler = {onProfileClickHandler}
         />
