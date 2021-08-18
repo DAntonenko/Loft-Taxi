@@ -1,4 +1,5 @@
 import React from 'react';
+import { Consumer } from '../../App';
 import IdentityPanel from '../../components/IdentityPanel/IdentityPanel';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
@@ -22,8 +23,6 @@ class StartPage extends React.Component {
   }
 
   render() {
-    const{ passedClickHandler } = this.props;
-
     return (
       <div className='start-page'>
         <IdentityPanel />
@@ -52,12 +51,15 @@ class StartPage extends React.Component {
                 type='button'
                 text='Забыли пароль?'
               />
-              <Button
-                text='Войти'
-                type='submit'
-                standardAppearance
-                onClick = {passedClickHandler}
-              />
+              <Consumer>{value =>
+                <Button
+                  text='Войти'
+                  type='submit'
+                  standardAppearance
+                  onClick = {value[0].onSubmitButtonClick}
+                />
+              }
+              </Consumer>
               <p className='start-page__mode-change'>
                 Новый пользователь?
                 <Button
@@ -99,13 +101,16 @@ class StartPage extends React.Component {
                 name='password'
                 placeholder='*************'
               />
-              <Button
+              <Consumer>{value =>
+                <Button
                 className='start-page__submit-button'
-                text='Зарегистрироваться'
-                type='submit'
-                standardAppearance
-                onClick = {passedClickHandler}
-              />
+                  text='Зарегистрироваться'
+                  type='submit'
+                  standardAppearance
+                  onClick = {value[0].onSubmitButtonClick}
+                />
+              }
+              </Consumer>
               <p className='start-page__mode-change'>
                 Уже зарегистрированны?
                 <Button

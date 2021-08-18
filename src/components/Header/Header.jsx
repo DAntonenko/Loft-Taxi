@@ -1,11 +1,15 @@
 import React from 'react';
+import { Consumer } from '../../App';
 import emblem from '../../assets/emblem.svg';
 import logo from '../../assets/logo.svg';
 import Button from '../Button/Button';
 
 import './Header.scss';
 
-const Header = ({ passedFromAppClickHandler, passedOnMapClickHandler, passedOnProfileClickHandler }) => {
+const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler }) => {
+
+  // Here I try to get context's value in a foolish way
+  const exitButtonHandler = <Consumer>{value => value[1].onExitButtonClick}</Consumer>
 
   const MENU_ITEMS = [
     {
@@ -17,7 +21,7 @@ const Header = ({ passedFromAppClickHandler, passedOnMapClickHandler, passedOnPr
       text: 'Профиль',
     },
     {
-      onClickHandler: passedFromAppClickHandler,
+      onClickHandler: exitButtonHandler, // Here the value from context must be
       text: 'Выйти',
     },
   ]

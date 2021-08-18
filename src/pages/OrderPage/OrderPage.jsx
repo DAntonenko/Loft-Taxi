@@ -5,7 +5,6 @@ class OrderPage extends React.Component {
   state = {currentMode: 'order'};
 
   render() {
-    const { passedClickHandler } = this.props;
     const { currentMode } = this.state;
 
     const onMapClickHandler = () => this.setState({currentMode: 'order'});
@@ -15,7 +14,7 @@ class OrderPage extends React.Component {
     return (
       <>
         <Header
-          passedFromAppClickHandler = {passedClickHandler}
+          // passedFromAppClickHandler = {passedClickHandler}
           passedOnMapClickHandler = {onMapClickHandler}
           passedOnProfileClickHandler = {onProfileClickHandler}
         />

@@ -15,7 +15,7 @@ const Button = ({ className, standardAppearance, text, type, disabled, onClick }
 
   return (
     <button
-      className={`${standardAppearance && 'button'} ${className ? className : ''}`}
+      className={`${standardAppearance ? 'button' : ''} ${className ? className : ''}`}
       type={type}
       disabled={disabled}
       onClick = {onClick}
