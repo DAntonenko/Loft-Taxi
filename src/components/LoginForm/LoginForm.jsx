@@ -6,7 +6,7 @@ import Button from '../Button/Button';
 
 import './LoginForm.scss';
 
-const LoginForm = ({ onRegistrationButtonClick }) => {
+const LoginForm = ({ logIn, onRegistrationButtonClick }) => {
   LoginForm.propTypes = {
     onRegistrationButtonClick: PropTypes.func,
   }
@@ -42,7 +42,7 @@ const LoginForm = ({ onRegistrationButtonClick }) => {
         text='Войти'
         type='submit'
         standardAppearance
-        onClick = {this.props.logIn }
+        onClick = {logIn}
       />
       <p className='login-form__mode-change'>
         Новый пользователь?
