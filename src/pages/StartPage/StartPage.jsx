@@ -1,8 +1,8 @@
 import React from 'react';
-import { Consumer } from '../../context';
+import { withAuth } from '../../AuthContext';
 import IdentityPanel from '../../components/IdentityPanel/IdentityPanel';
-import Input from '../../components/Input/Input';
-import Button from '../../components/Button/Button';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
 
 import './StartPage.scss';
 
@@ -27,105 +27,14 @@ class StartPage extends React.Component {
       <div className='start-page'>
         <IdentityPanel />
         <section className='start-page__form-field'>
-         {this.state.currentMode === 'login' && 
-            <form className='start-page__form start-page__form--login' onSubmit={this.handleLoginSubmit}>
-              <h2 className='start-page__form-title'>Войти</h2>
-              <Input
-                className='start-page__input'
-                label='Email'
-                id='email'
-                type='email'
-                name='email'
-                placeholder='mail@mail.ru'
-              />
-              <Input
-                className='start-page__input'
-                label='Пароль'
-                id='password'
-                type='password'
-                name='password'
-                placeholder='*************'
-              />
-              <Button
-                className = 'start-page__forgot-password-button'
-                type='button'
-                text='Забыли пароль?'
-              />
-              <Consumer>{value =>
-                <Button
-                  text='Войти'
-                  type='submit'
-                  standardAppearance
-                  onClick = {value.onSubmitButtonClick}
-                />
-              }
-              </Consumer>
-              <p className='start-page__mode-change'>
-                Новый пользователь?
-                <Button
-                  className='start-page__mode-change-button'
-                  type='button'
-                  text='Регистрация'
-                  onClick={() => this.setState({currentMode: 'registration'})}
-                />
-              </p>
-            </form>
-         }
+         {this.state.currentMode === 'login' &&
+          <LoginForm onRegistrationButtonClick={() => {this.setState({ currentMode: 'registration' })}} />}
          {this.state.currentMode === 'registration' &&
-            <form className='start-page__form start-page__form--registration'>
-              <h2 className='start-page__form-title'>Регистрация</h2>
-              <Input
-                className='start-page__input'
-                label='Email'
-                required
-                id='email'
-                type='email'
-                name='email'
-                placeholder='mail@mail.ru'
-              />
-              <Input
-                className='start-page__input'
-                label='Как вас зовут?'
-                required
-                id='name'
-                type='text'
-                name='name'
-                placeholder='mail@mail.ru'
-              />
-              <Input
-                className='start-page__input'
-                label='Придумайте пароль'
-                required
-                id='password'
-                type='password'
-                name='password'
-                placeholder='*************'
-              />
-              <Consumer>{value =>
-                <Button
-                  className='start-page__submit-button'
-                  text='Зарегистрироваться'
-                  type='submit'
-                  standardAppearance
-                  onClick = {value.onSubmitButtonClick}
-                />
-              }
-              </Consumer>
-              <p className='start-page__mode-change'>
-                Уже зарегистрированны?
-                <Button
-                  className='start-page__mode-change-button'
-                  type='button'
-                  text='Войти'
-                  onClick={() => this.setState({currentMode: 'login'})}
-                />
-              </p>
-            </form>
-         }
+          <RegistrationForm onLoginButtonClick={() => {this.setState({ currentMode: 'login' })}} />}
        </section>
       </div>
     )
   }
 }
 
-export default StartPage;
+export default withAuth(StartPage);

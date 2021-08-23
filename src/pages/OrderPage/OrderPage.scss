@@ -1,0 +1,10 @@
+.order-page {
+  position: relative;
+
+  & p {
+    position: absolute;
+    top: 200px;
+    left: 200px;
+    z-index: 10;
+  }
+}

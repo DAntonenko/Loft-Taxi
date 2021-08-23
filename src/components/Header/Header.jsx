@@ -1,5 +1,4 @@
 import React from 'react';
-import { Consumer } from '../../context';
 import emblem from '../../assets/emblem.svg';
 import logo from '../../assets/logo.svg';
 import Button from '../Button/Button';
@@ -40,15 +39,12 @@ const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler }) => {
           {MENU_ITEMS.map((item) => {
             return (
               <li className='header__navigation-list-item' key={item.text}>
-                <Consumer>{value => 
-                  <Button
-                    className='header__navigation-button'
-                    type='button'
-                    text={item.text}
-                    onClick={item.onClickHandler || value.onExitButtonClick}
-                  />
-                }
-                </Consumer>
+                <Button
+                  className='header__navigation-button'
+                  type='button'
+                  text={item.text}
+                  // onClick={item.onClickHandler || value.onExitButtonClick}
+                />
               </li>
             )
           })}

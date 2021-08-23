@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   width: 100vw;
-  height: 102px;
+  height: var(--header-height);
   padding: 0 50px 0 27px;
   background-color: var(--background-black);
   z-index: 100;
