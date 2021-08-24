@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withAuth } from '../../AuthContext';
+import PropTypes from 'prop-types';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './LoginForm.scss';
 
-const LoginForm = ({ logIn, onRegistrationButtonClick }) => {
+const LoginForm = ({ logIn, navigate, onRegistrationButtonClick }) => {
   LoginForm.propTypes = {
     onRegistrationButtonClick: PropTypes.func,
   }
@@ -14,7 +14,12 @@ const LoginForm = ({ logIn, onRegistrationButtonClick }) => {
   return (
     <form
       className='login-form'
-      // onSubmit={this.handleLoginSubmit}
+      onSubmit={(e) => {
+        const emailInput = e.nativeEvent.target[0];
+        const passwordInput = e.nativeEvent.target[1];
+        logIn(emailInput.value, passwordInput.value);
+        navigate('orderPage');
+      }}
     >
       <h2 className='login-form__form-title'>Войти</h2>
       <Input
@@ -42,7 +47,6 @@ const LoginForm = ({ logIn, onRegistrationButtonClick }) => {
         text='Войти'
         type='submit'
         standardAppearance
-        onClick = {logIn}
       />
       <p className='login-form__mode-change'>
         Новый пользователь?

@@ -1,17 +1,25 @@
 import React from 'react';
+import { withAuth } from '../../AuthContext';
 import PropTypes from 'prop-types';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './RegistrationForm.scss';
 
-const RegistrationForm = ({ onLoginButtonClick }) => {
+const RegistrationForm = ({ logIn, navigate, onLoginButtonClick }) => {
   RegistrationForm.popTypes = {
     onLoginButtonClick: PropTypes.func,
   }
 
   return (
-    <form className='registration-form'>
+    <form
+      className='registration-form'
+      onSubmit={e => {
+        e.preventDefault();
+        logIn('1@1', '1');
+        navigate('orderPage');
+      }}
+    >
       <h2 className='registration-form__form-title'>Регистрация</h2>
       <Input
         className='registration-form__input'
@@ -45,7 +53,6 @@ const RegistrationForm = ({ onLoginButtonClick }) => {
         text='Зарегистрироваться'
         type='submit'
         standardAppearance
-        // onClick = {value.onSubmitButtonClick}
       />
       <p className='registration-form__mode-change'>
         Уже зарегистрированны?
@@ -60,4 +67,4 @@ const RegistrationForm = ({ onLoginButtonClick }) => {
   )
 }
 
-export default RegistrationForm;
+export default withAuth(RegistrationForm);

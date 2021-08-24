@@ -1,5 +1,4 @@
 import React from 'react';
-import { withAuth } from '../../AuthContext';
 import Header from '../../components/Header/Header';
 import Map from '../../components/Map/Map';
 
@@ -19,6 +18,7 @@ class OrderPage extends React.Component {
         <Header
           passedOnMapClickHandler = {onMapClickHandler}
           passedOnProfileClickHandler = {onProfileClickHandler}
+          navigate = {this.props.navigate}
         />
         { currentMode === 'order' && <p>Заказать такси</p> }
         { currentMode === 'profile' && <p>Профиль</p> }
@@ -28,6 +28,5 @@ class OrderPage extends React.Component {
   }
 }
 
-const OrederPageWithAuth = withAuth(OrderPage);
 
-export default OrederPageWithAuth;
+export default OrderPage;
