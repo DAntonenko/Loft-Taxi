@@ -1,29 +1,32 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
+import Map from '../../components/Map/Map';
+
+import './OrderPage.scss';
 
 class OrderPage extends React.Component {
   state = {currentMode: 'order'};
 
   render() {
-    const { passedClickHandler } = this.props;
     const { currentMode } = this.state;
 
     const onMapClickHandler = () => this.setState({currentMode: 'order'});
     const onProfileClickHandler = () => this.setState({currentMode: 'profile'});
 
-
     return (
-      <>
+      <div className='order-page'>
         <Header
-          passedFromAppClickHandler = {passedClickHandler}
           passedOnMapClickHandler = {onMapClickHandler}
           passedOnProfileClickHandler = {onProfileClickHandler}
+          navigate = {this.props.navigate}
         />
         { currentMode === 'order' && <p>Заказать такси</p> }
         { currentMode === 'profile' && <p>Профиль</p> }
-      </>
+        <Map />
+      </div>
     )
   }
 }
+
 
 export default OrderPage;

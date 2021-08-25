@@ -1,11 +1,13 @@
 import React from 'react';
+import { withAuth } from '../../AuthContext';
 import emblem from '../../assets/emblem.svg';
 import logo from '../../assets/logo.svg';
 import Button from '../Button/Button';
 
 import './Header.scss';
 
-const Header = ({ passedFromAppClickHandler, passedOnMapClickHandler, passedOnProfileClickHandler }) => {
+const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler, logOut, navigate }) => {
+
   const MENU_ITEMS = [
     {
       onClickHandler: passedOnMapClickHandler,
@@ -16,7 +18,10 @@ const Header = ({ passedFromAppClickHandler, passedOnMapClickHandler, passedOnPr
       text: 'Профиль',
     },
     {
-      onClickHandler: passedFromAppClickHandler,
+      onClickHandler: () => {
+        logOut();
+        navigate('startPage');
+      },
       text: 'Выйти',
     },
   ]
@@ -53,4 +58,4 @@ const Header = ({ passedFromAppClickHandler, passedOnMapClickHandler, passedOnPr
   )
 }
 
-export default Header;
+export default withAuth(Header);
