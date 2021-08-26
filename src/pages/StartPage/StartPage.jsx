@@ -1,28 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import IdentityPanel from '../../components/IdentityPanel/IdentityPanel';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
 
 import './StartPage.scss';
 
-class StartPage extends React.Component {
-  state = {
-    currentMode: 'login',
+const StartPage = ({ navigate }) => {
+  StartPage.propTypes = {
+    navigate: PropTypes.func,
   }
 
-  render() {
-    return (
-      <div className='start-page'>
-        <IdentityPanel />
-        <section className='start-page__form-field'>
-         {this.state.currentMode === 'login' &&
-          <LoginForm onRegistrationButtonClick={() => {this.setState({ currentMode: 'registration' })}}  navigate={this.props.navigate} />}
-         {this.state.currentMode === 'registration' &&
-          <RegistrationForm onLoginButtonClick={() => {this.setState({ currentMode: 'login' })}}  navigate={this.props.navigate} />}
-       </section>
-      </div>
-    )
-  }
+  const [currentMode, setCurrentMode] = useState('login');
+ 
+  return (
+    <div className='start-page'>
+      <IdentityPanel />
+      <section className='start-page__form-field'>
+        {currentMode === 'login' &&
+        <LoginForm onRegistrationButtonClick={() => {setCurrentMode('registration')}}  navigate={navigate} />}
+        {currentMode === 'registration' &&
+        <RegistrationForm onLoginButtonClick={() => {setCurrentMode('login')}}  navigate={navigate} />}
+      </section>
+    </div>
+  )
 }
 
 export default StartPage;

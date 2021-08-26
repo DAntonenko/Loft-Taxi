@@ -8,6 +8,8 @@ import './LoginForm.scss';
 
 const LoginForm = ({ logIn, navigate, onRegistrationButtonClick }) => {
   LoginForm.propTypes = {
+    logIn: PropTypes.func,
+    navigate: PropTypes.func,
     onRegistrationButtonClick: PropTypes.func,
   }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withAuth } from '../../AuthContext';
 import emblem from '../../assets/emblem.svg';
 import logo from '../../assets/logo.svg';
@@ -7,6 +8,12 @@ import Button from '../Button/Button';
 import './Header.scss';
 
 const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler, logOut, navigate }) => {
+  Header.propTypes = {
+    passedOnMapClickHandler: PropTypes.func,
+    passedOnProfileClickHandler: PropTypes.func,
+    logOut: PropTypes.func,
+    navigate: PropTypes.func,
+  }
 
   const MENU_ITEMS = [
     {
