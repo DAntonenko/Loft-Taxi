@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../components/Header/Header';
 import Map from '../../components/Map/Map';
+import Profile from '../../components/Profile/Profile';
 
 import './OrderPage.scss';
 
@@ -23,7 +24,7 @@ const OrderPage = ({ navigate }) => {
         navigate = {navigate}
       />
       { currentMode === 'order' && <p>Заказать такси</p> }
-      { currentMode === 'profile' && <p>Профиль</p> }
+      { currentMode === 'profile' && <Profile /> }
       <Map />
     </div>
   )
