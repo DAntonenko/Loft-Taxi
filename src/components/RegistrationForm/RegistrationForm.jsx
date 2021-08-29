@@ -1,6 +1,6 @@
 import React from 'react';
-import { withAuth } from '../../AuthContext';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
@@ -69,4 +69,4 @@ const RegistrationForm = ({ logIn, navigate, onLoginButtonClick }) => {
   )
 }
 
-export default withAuth(RegistrationForm);
+export default RegistrationForm;

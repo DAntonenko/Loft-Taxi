@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withAuth } from '../../AuthContext';
+import { connect } from 'react-redux';
+import { logOut } from '../../store/actions/actions';
 import emblem from '../../assets/emblem.svg';
 import logo from '../../assets/logo.svg';
 import Button from '../Button/Button';
@@ -65,4 +66,7 @@ const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler, logOut, 
   )
 }
 
-export default withAuth(Header);
+export default connect(
+  null,
+  { logOut }
+)(Header);

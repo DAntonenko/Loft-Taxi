@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { withAuth } from './AuthContext';
+import { connect } from 'react-redux';
 import StartPage from './pages/StartPage/StartPage';
 import OrderPage from './pages/OrderPage/OrderPage';
 
@@ -11,19 +10,15 @@ const App = ({ isLoggedIn }) => {
     nisLoggedIn: PropTypes.bool,
   }
 
-  const [ currentPage, setCurrentPage ] = useState('startPage');
-
-  const navigateTo = (page) => {
-    setCurrentPage(page);
-  }
-
   return (
     <div className='App'>
       <h1 className='visually-hidden'>Loft-Taxi</h1>
-      {currentPage === 'startPage' && <StartPage navigate={navigateTo} />}
-      {currentPage === 'orderPage' && isLoggedIn && <OrderPage navigate={navigateTo}/>}
+      {!isLoggedIn && <StartPage />}
+      {isLoggedIn && <OrderPage />}
     </div>
   );
 }
 
-export default withAuth(App);
+export default connect(
+  state => ({ isLoggedIn: state.auth.isLoggedIn }),
+)(App);

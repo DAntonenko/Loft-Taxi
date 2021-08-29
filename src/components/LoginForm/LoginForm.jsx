@@ -1,12 +1,17 @@
 import React from 'react';
-import { withAuth } from '../../AuthContext';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { authenticate } from '../../store/actions/actions';
+import { logIn } from '../../store/actions/actions';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './LoginForm.scss';
 
-const LoginForm = ({ logIn, navigate, onRegistrationButtonClick }) => {
+const LoginForm = ({
+  // logIn,
+  onRegistrationButtonClick,
+  }) => {
   LoginForm.propTypes = {
     logIn: PropTypes.func,
     navigate: PropTypes.func,
@@ -17,10 +22,10 @@ const LoginForm = ({ logIn, navigate, onRegistrationButtonClick }) => {
     <form
       className='login-form'
       onSubmit={(e) => {
-        const emailInput = e.nativeEvent.target[0];
-        const passwordInput = e.nativeEvent.target[1];
-        logIn(emailInput.value, passwordInput.value);
-        navigate('orderPage');
+        // const emailInput = e.nativeEvent.target[0];
+        // const passwordInput = e.nativeEvent.target[1];
+        logIn();
+        // authenticate(emailInput.value, passwordInput.value);
       }}
     >
       <h2 className='login-form__form-title'>Войти</h2>
@@ -63,4 +68,8 @@ const LoginForm = ({ logIn, navigate, onRegistrationButtonClick }) => {
   )
 }
 
-export default withAuth(LoginForm);
+export default connect(
+  null,
+  // { authenticate }
+  { logIn }
+)(LoginForm);
