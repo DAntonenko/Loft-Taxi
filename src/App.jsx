@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+// import { PrivateRoute } from '';
 import StartPage from './pages/StartPage/StartPage';
 import OrderPage from './pages/OrderPage/OrderPage';
 
@@ -13,6 +15,10 @@ const App = ({ isLoggedIn }) => {
   return (
     <div className='App'>
       <h1 className='visually-hidden'>Loft-Taxi</h1>
+      {/* <Switch>
+        <Route></Route>
+        <PrivateRoute></PrivateRoute>
+      </Switch> */}
       {!isLoggedIn && <StartPage />}
       {isLoggedIn && <OrderPage />}
     </div>

@@ -28,7 +28,6 @@ const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler, logOut, 
     {
       onClickHandler: () => {
         logOut();
-        navigate('startPage');
       },
       text: 'Выйти',
     },
