@@ -1,21 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authenticate } from '../../store/actions/actions';
-// import { logIn } from '../../store/actions/actions';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './LoginForm.scss';
 
 const LoginForm = ({
-  // logIn,
   authenticate,
-  onRegistrationButtonClick,
   }) => {
   LoginForm.propTypes = {
     authenticate: PropTypes.func,
-    onRegistrationButtonClick: PropTypes.func,
   }
 
   return (
@@ -25,7 +22,6 @@ const LoginForm = ({
         e.preventDefault();
         const emailInput = e.nativeEvent.target[0];
         const passwordInput = e.nativeEvent.target[1];
-        // logIn();
         authenticate(emailInput.value, passwordInput.value);
       }}
     >
@@ -58,12 +54,12 @@ const LoginForm = ({
       />
       <p className='login-form__mode-change'>
         Новый пользователь?
-        <Button
-          className='login-form__mode-change-button'
-          type='button'
-          text='Регистрация'
-          onClick={onRegistrationButtonClick}
-        />
+        <Link
+          to='/register'
+          className='login-form__mode-change-link'
+        >
+          Регистрация
+        </Link>
       </p>
     </form>
   )
@@ -72,5 +68,4 @@ const LoginForm = ({
 export default connect(
   null,
   { authenticate }
-  // { logIn }
 )(LoginForm);

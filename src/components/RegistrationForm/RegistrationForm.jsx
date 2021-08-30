@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './RegistrationForm.scss';
 
-const RegistrationForm = ({ logIn, navigate, onLoginButtonClick }) => {
+const RegistrationForm = ({ logIn }) => {
   RegistrationForm.popTypes = {
     logIn: PropTypes.func,
-    navigate: PropTypes.func,
-    onLoginButtonClick: PropTypes.func,
   }
 
   return (
@@ -19,7 +18,6 @@ const RegistrationForm = ({ logIn, navigate, onLoginButtonClick }) => {
       onSubmit={e => {
         e.preventDefault();
         logIn('1@1', '1');
-        navigate('orderPage');
       }}
     >
       <h2 className='registration-form__form-title'>Регистрация</h2>
@@ -58,12 +56,12 @@ const RegistrationForm = ({ logIn, navigate, onLoginButtonClick }) => {
       />
       <p className='registration-form__mode-change'>
         Уже зарегистрированны?
-        <Button
-          className='registration-form__mode-change-button'
-          type='button'
-          text='Войти'
-          onClick={onLoginButtonClick}
-        />
+        <Link
+          to='/'
+          className='registration-form__mode-change-link'
+        >
+          Войти
+        </Link>
       </p>
     </form>
   )
