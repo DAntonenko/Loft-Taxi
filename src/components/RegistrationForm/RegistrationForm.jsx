@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { registration } from '../../store/actions/actions';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
@@ -17,7 +18,10 @@ const RegistrationForm = ({ logIn }) => {
       className='registration-form'
       onSubmit={e => {
         e.preventDefault();
-        logIn('1@1', '1');
+        const emailInput = e.nativeEvent.target[0];
+        const nameInput = e.nativeEvent.target[1];
+        const passwordInput = e.nativeEvent.target[2];
+        registration(emailInput.value, passwordInput.value, nameInput.value);
       }}
     >
       <h2 className='registration-form__form-title'>Регистрация</h2>
@@ -67,4 +71,7 @@ const RegistrationForm = ({ logIn }) => {
   )
 }
 
-export default RegistrationForm;
+export default connect(
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  { registration }
+)(RegistrationForm);

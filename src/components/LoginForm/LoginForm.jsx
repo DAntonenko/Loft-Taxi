@@ -66,6 +66,6 @@ const LoginForm = ({
 }
 
 export default connect(
-  null,
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
   { authenticate }
 )(LoginForm);

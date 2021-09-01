@@ -7,7 +7,7 @@ import './common_styles/App.scss';
 
 const App = ({ isLoggedIn }) => {
   App.propTypes = {
-    nisLoggedIn: PropTypes.bool,
+    isLoggedIn: PropTypes.bool,
   }
 
   return (
