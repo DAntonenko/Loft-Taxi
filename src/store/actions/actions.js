@@ -15,7 +15,7 @@ export const authenticate = (email, password) => ({
   payload: {email, password},
 });
 
-export const registration = (email, password, name) => ({
+export const registration = (email, password, name, surname='Тютькин') => ({
   type: REGISTRATION,
-  payload: {email, password, name},
+  payload: {email, password, name, surname},
 });

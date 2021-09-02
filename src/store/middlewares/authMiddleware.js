@@ -17,8 +17,8 @@ export const authMiddleware = (store) => (next) => async (action) => {
 
     case REGISTRATION: {
 
-      const { email, password, name } = action.payload;
-      const data = await setRegistration(email, password, name);
+      const { email, password, name, surname } = action.payload;
+      const data = await setRegistration(email, password, name, surname);
 
       if (data.success) {
         store.dispatch(logIn(data.token));
