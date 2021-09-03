@@ -8,9 +8,9 @@ import Button from '../Button/Button';
 
 import './RegistrationForm.scss';
 
-const RegistrationForm = ({ logIn }) => {
-  RegistrationForm.popTypes = {
-    logIn: PropTypes.func,
+const RegistrationForm = ({ registration }) => {
+  RegistrationForm.propTypes = {
+    registration: PropTypes.func,
   }
 
   return (
@@ -21,7 +21,7 @@ const RegistrationForm = ({ logIn }) => {
         const emailInput = e.nativeEvent.target[0];
         const nameInput = e.nativeEvent.target[1];
         const passwordInput = e.nativeEvent.target[2];
-        registration(emailInput.value, passwordInput.value, nameInput.value);
+        registration(emailInput.value, passwordInput.value, nameInput.value, 'Dude');
       }}
     >
       <h2 className='registration-form__form-title'>Регистрация</h2>

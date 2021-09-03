@@ -14,7 +14,7 @@ export const setLogIn = async (email, password) => {
   .then(res => res.json())
 }
 
-export const setRegistration = async (email, password, name) => {
+export const setRegistration = async (email, password, name, surname) => {
   return fetch(
     'https://loft-taxi.glitch.me/register', {
       method: 'POST',
@@ -22,6 +22,7 @@ export const setRegistration = async (email, password, name) => {
         "email": email,
         "password": password,
         "name": name,
+        "surname": surname,
       }),
       headers: {
         'Content-type': 'application/json'

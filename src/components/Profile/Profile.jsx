@@ -25,7 +25,7 @@ const Profile = () => {
             <div className='profile__card-master-card-icon' />
           </div>
         </section>
-        <Button className='profile__submit-button' standardAppearance text='Сохранить' />
+        <Button className='profile__submit-button' standardAppearance text='Сохранить' type='submit' />
       </div>
     </div>
   )
