@@ -1,10 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import LoginForm from './LoginForm';
+import {createMemoryHistory} from 'history';
+import { Router } from 'react-router-dom';
+import { LoginForm } from './LoginForm';
 
 describe('LoginForm', () => {
   it('renders correctly', () => {
-    const { getByLabelText, container } = render(<LoginForm />)
+    const history = createMemoryHistory()
+    const { getByLabelText, container } = render(
+      <Router history={history}>
+        <LoginForm />
+      </Router>
+    )
     expect(getByLabelText('Email')).toHaveAttribute('name', 'email')
     expect(getByLabelText('Пароль')).toHaveAttribute('name', 'password')
     expect(container.innerHTML).toMatch('Забыли пароль?')

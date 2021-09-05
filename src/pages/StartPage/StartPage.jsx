@@ -6,7 +6,7 @@ import RegistrationForm from '../../components/RegistrationForm/RegistrationForm
 
 import './StartPage.scss';
 
-const StartPage = () => {
+export const StartPage = () => {
 
   return (
     <div className='start-page'>

@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { registration } from '../../store/actions/actions';
+import { registration } from '../../store/actions/auth';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './RegistrationForm.scss';
 
-const RegistrationForm = ({ registration }) => {
+export const RegistrationForm = ({ registration }) => {
   RegistrationForm.propTypes = {
     registration: PropTypes.func,
   }

@@ -2,15 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { authenticate } from '../../store/actions/actions';
+import { authenticate } from '../../store/actions/auth';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './LoginForm.scss';
 
-const LoginForm = ({
-  authenticate,
-  }) => {
+export const LoginForm = ({ authenticate }) => {
   LoginForm.propTypes = {
     authenticate: PropTypes.func,
   }

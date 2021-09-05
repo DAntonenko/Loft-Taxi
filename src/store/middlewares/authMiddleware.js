@@ -1,4 +1,4 @@
-import { AUTHENTICATE, REGISTRATION, logIn } from '../actions/actions';
+import { AUTHENTICATE, REGISTRATION, logIn, logInError } from '../actions/auth';
 import { setLogIn, setRegistration,  } from '../../api/api';
 
 export const authMiddleware = (store) => (next) => async (action) => {
@@ -10,6 +10,10 @@ export const authMiddleware = (store) => (next) => async (action) => {
 
       if (data.success) {
         store.dispatch(logIn(data.token));
+      }
+
+      if (data.error) {
+        store.dispatch(logInError(data.error));
       }
 
       break;

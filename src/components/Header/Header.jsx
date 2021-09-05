@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { logOut } from '../../store/actions/actions';
+import { logOut } from '../../store/actions/auth';
 import emblem from '../../assets/emblem.svg';
 import logo from '../../assets/logo.svg';
 import Button from '../Button/Button';
 
 import './Header.scss';
 
-const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler, logOut, navigate }) => {
+export const Header = ({ passedOnMapClickHandler, passedOnProfileClickHandler, logOut, navigate }) => {
   Header.propTypes = {
     passedOnMapClickHandler: PropTypes.func,
     passedOnProfileClickHandler: PropTypes.func,

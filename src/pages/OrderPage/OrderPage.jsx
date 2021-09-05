@@ -5,7 +5,7 @@ import Profile from '../../components/Profile/Profile';
 
 import './OrderPage.scss';
 
-const OrderPage = () => {
+export const OrderPage = () => {
  
   const [ currentMode, setCurrentMode ] = useState('order');
 
