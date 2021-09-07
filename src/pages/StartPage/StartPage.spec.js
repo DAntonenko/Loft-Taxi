@@ -1,12 +1,19 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import StartPage from './StartPage';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
+import { StartPage } from './StartPage';
 
 describe('StartPage', () => {
   it('renders correctly', () => {
-    const {container} = render(<StartPage />)
+    const {container} = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <StartPage />
+        </Provider>
+      </BrowserRouter>
+    )
     expect(container.innerHTML).toMatch('identity-panel')
-    // expect(container.innerHTML).toMatch('LoginForm')
-    // expect(container.innerHTML).toMatch('RegistrationForm')
   })
 })

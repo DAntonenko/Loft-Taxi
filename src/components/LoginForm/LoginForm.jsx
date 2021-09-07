@@ -1,24 +1,26 @@
 import React from 'react';
-import { withAuth } from '../../AuthContext';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { authenticate } from '../../store/actions/auth';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './LoginForm.scss';
 
-const LoginForm = ({ logIn, navigate, onRegistrationButtonClick }) => {
+export const LoginForm = ({ authenticate }) => {
   LoginForm.propTypes = {
-    onRegistrationButtonClick: PropTypes.func,
+    authenticate: PropTypes.func,
   }
 
   return (
     <form
       className='login-form'
       onSubmit={(e) => {
+        e.preventDefault();
         const emailInput = e.nativeEvent.target[0];
         const passwordInput = e.nativeEvent.target[1];
-        logIn(emailInput.value, passwordInput.value);
-        navigate('orderPage');
+        authenticate(emailInput.value, passwordInput.value);
       }}
     >
       <h2 className='login-form__form-title'>Войти</h2>
@@ -50,15 +52,18 @@ const LoginForm = ({ logIn, navigate, onRegistrationButtonClick }) => {
       />
       <p className='login-form__mode-change'>
         Новый пользователь?
-        <Button
-          className='login-form__mode-change-button'
-          type='button'
-          text='Регистрация'
-          onClick={onRegistrationButtonClick}
-        />
+        <Link
+          to='/register'
+          className='login-form__mode-change-link'
+        >
+          Регистрация
+        </Link>
       </p>
     </form>
   )
 }
 
-export default withAuth(LoginForm);
+export default connect(
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  { authenticate }
+)(LoginForm);

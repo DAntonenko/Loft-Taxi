@@ -8,7 +8,7 @@ const Input = ({ className, id, type, name, placeholder, label ,required }) => {
   Input.propTypes = {
     className: PropTypes.string,
     id: PropTypes.string,
-    type: PropTypes.oneOf(['text', 'number', 'email', 'password', 'tel']).isRequired,
+    type: PropTypes.oneOf(['text', 'number', 'email', 'password', 'tel', 'month']).isRequired,
     name: PropTypes.string,
     placeholder: PropTypes.string,
     label: PropTypes.string,

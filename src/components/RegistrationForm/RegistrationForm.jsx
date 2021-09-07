@@ -1,14 +1,16 @@
 import React from 'react';
-import { withAuth } from '../../AuthContext';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { registration } from '../../store/actions/auth';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './RegistrationForm.scss';
 
-const RegistrationForm = ({ logIn, navigate, onLoginButtonClick }) => {
-  RegistrationForm.popTypes = {
-    onLoginButtonClick: PropTypes.func,
+export const RegistrationForm = ({ registration }) => {
+  RegistrationForm.propTypes = {
+    registration: PropTypes.func,
   }
 
   return (
@@ -16,8 +18,10 @@ const RegistrationForm = ({ logIn, navigate, onLoginButtonClick }) => {
       className='registration-form'
       onSubmit={e => {
         e.preventDefault();
-        logIn('1@1', '1');
-        navigate('orderPage');
+        const emailInput = e.nativeEvent.target[0];
+        const nameInput = e.nativeEvent.target[1];
+        const passwordInput = e.nativeEvent.target[2];
+        registration(emailInput.value, passwordInput.value, nameInput.value, 'Dude');
       }}
     >
       <h2 className='registration-form__form-title'>Регистрация</h2>
@@ -56,15 +60,18 @@ const RegistrationForm = ({ logIn, navigate, onLoginButtonClick }) => {
       />
       <p className='registration-form__mode-change'>
         Уже зарегистрированны?
-        <Button
-          className='registration-form__mode-change-button'
-          type='button'
-          text='Войти'
-          onClick={onLoginButtonClick}
-        />
+        <Link
+          to='/'
+          className='registration-form__mode-change-link'
+        >
+          Войти
+        </Link>
       </p>
     </form>
   )
 }
 
-export default withAuth(RegistrationForm);
+export default connect(
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  { registration }
+)(RegistrationForm);

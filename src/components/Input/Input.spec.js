@@ -6,5 +6,6 @@ describe('Input', () => {
   it('renders correctly', () => {
     const {container} = render(<Input />)
     expect(container.innerHTML).toMatch('input')
+    expect(container.getElementsByTagName('input')[0]).toBeInTheDocument()
   })
 })
