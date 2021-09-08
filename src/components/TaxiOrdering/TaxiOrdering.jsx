@@ -7,10 +7,10 @@ import './TaxiOrdering.scss';
 export const TaxiOrdering = ({ routeStartOptions, routeEndOptions}) => {
   TaxiOrdering.propTypes = {
     routeStartOptions: PropTypes.exact({
-      "address": PropTypes.arrayOf(PropTypes.string),
+      "addresses": PropTypes.arrayOf(PropTypes.string),
     }),
     routeEndOptions: PropTypes.exact({
-      "address": PropTypes.arrayOf(PropTypes.string),
+      "addresses": PropTypes.arrayOf(PropTypes.string),
     }),
   }
   return (

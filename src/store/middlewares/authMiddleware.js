@@ -1,5 +1,5 @@
 import { AUTHENTICATE, REGISTRATION, logIn, logInError } from '../actions/auth';
-import { setLogIn, setRegistration,  } from '../../api/api';
+import { setLogIn, setRegistration } from '../../api/api';
 
 export const authMiddleware = (store) => (next) => async (action) => {
   switch(action.type) {
