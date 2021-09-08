@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
 import Map from '../../components/Map/Map';
 import Profile from '../../components/Profile/Profile';
+import TaxiOrdering from '../../components/TaxiOrdering/TaxiOrdering';
 
 import './OrderPage.scss';
 
@@ -18,7 +19,12 @@ export const OrderPage = () => {
         passedOnMapClickHandler = {onMapClickHandler}
         passedOnProfileClickHandler = {onProfileClickHandler}
       />
-      { currentMode === 'order' && <p>Заказать такси</p> }
+      { currentMode === 'order' &&
+        <TaxiOrdering
+          routeStartOptions={{"addresses":["Пулково (LED)","Эрмитаж","Кинотеатр Аврора","Мариинский театр"]}}
+          routeEndOptions={{"addresses":["Пулково (LED)","Эрмитаж","Кинотеатр Аврора","Мариинский театр"]}}
+        />
+      }
       { currentMode === 'profile' && <Profile /> }
       <Map />
     </div>
