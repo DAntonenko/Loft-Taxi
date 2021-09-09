@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { pushCardData, getCardData } from '../../store/actions/card';
-import { getCardDataFromLocalStorage } from '../../localstorage';
+import { setCard } from '../../store/actions/card';
 import Input from '../Input/Input'
 import Button from '../Button/Button';
 
 import './Profile.scss';
 
-export const Profile = ({ setCard, pushCardData }) => {
+export const Profile = ({ setCard }) => {
   Profile.propTypes = {
-    pushCardData: PropTypes.func,
+    setCard: PropTypes.func,
   }
 
   return (
@@ -27,7 +26,8 @@ export const Profile = ({ setCard, pushCardData }) => {
               const cardNumberInput = e.nativeEvent.target[1];
               const expiryDateInput = e.nativeEvent.target[2];
               const cvcInput = e.nativeEvent.target[3];
-              pushCardData(cardNumberInput.value, expiryDateInput.value, cardNameInput.value, cvcInput.value, 'rec272HbhNOndqJVG');
+              // pushCardData(cardNumberInput.value, expiryDateInput.value, cardNameInput.value, cvcInput.value, 'rec0eaT1jsO9X7F49');
+              setCard(cardNumberInput.value, expiryDateInput.value, cardNameInput.value, cvcInput.value);
             }}
           >
             <Input className='profile__input' id='name' type='text' name='name' placeholder='Loft' label='Имя владельца' />
@@ -49,7 +49,4 @@ export const Profile = ({ setCard, pushCardData }) => {
   )
 }
 
-export default connect(
-  (state) => ({token: state.auth.token}),
-  { pushCardData }
-)(Profile);
+export default connect(null, {setCard})(Profile);

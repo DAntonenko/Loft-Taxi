@@ -10,6 +10,7 @@ export const card = (store) => (next) => async (action) => {
 
       if (success) {
         store.dispatch(setCard(cardNumber, expiryDate, cardName, cvc));
+        console.log('card success')
       }
 
       break;
