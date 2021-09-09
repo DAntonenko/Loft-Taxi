@@ -14,4 +14,5 @@ export const store = createStore(
   )
 );
 
-sagaMiddleware.run(authSaga, cardSaga);
+sagaMiddleware.run(authSaga);
+sagaMiddleware.run(cardSaga);
