@@ -23,16 +23,16 @@ export const OrderPage = ({ cardNumber, expiryDate, cardName, cvc, getCardData }
   const onMapClickHandler = () => setCurrentMode('order');
   const onProfileClickHandler = () => setCurrentMode('profile');
 
-  // useEffect(() => {
-  //   if (
-  //     !cardNumber ||
-  //     !expiryDate ||
-  //     !cardName ||
-  //     !cvc
-  //   ) {
-  //     setCurrentMode('profile');
-  //   }
-  // })
+  useEffect(() => {
+    if (
+      !cardNumber ||
+      !expiryDate ||
+      !cardName ||
+      !cvc
+    ) {
+      setCurrentMode('profile');
+    }
+  }, [cardNumber, expiryDate, cardName, cvc]);
 
   return (
     <div className='order-page'>
