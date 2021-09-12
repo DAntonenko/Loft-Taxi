@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import StartPage from './pages/StartPage/StartPage';
 import OrderPage from './pages/OrderPage/OrderPage';
-import { getAddressesList } from './store/actions/addresses'; 
+import { getAddressesList } from './store/actions/addresses';
 
 import './common_styles/App.scss';
 
-export const App = ({ isLoggedIn, error }) => {
+export const App = ({ isLoggedIn, error, getAddressesList }) => {
   App.propTypes = {
     isLoggedIn: PropTypes.bool,
     error: PropTypes.object,

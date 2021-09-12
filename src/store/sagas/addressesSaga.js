@@ -4,6 +4,7 @@ import { GET_ADDRESSES_LIST, setAddressesList } from '../actions/addresses';
 import addresses from '../reducers/addresses';
 
 export function* getAddressesSaga(action) {
+  console.log('getAddressesSaga')
   const data = yield call(getAvailableAddressesFromServer);
 
   if (data.hasOwnProperty('addresses')) {

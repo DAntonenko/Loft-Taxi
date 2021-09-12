@@ -12,6 +12,7 @@ const initialState = {
 export default function auth(state = initialState, action) {
   switch(action.type) {
     case LOG_IN: {
+      console.log('logInReducer')
       setLoginDataToLocalStorage(true, action.payload.token);
 
       return {

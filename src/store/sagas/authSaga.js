@@ -3,6 +3,7 @@ import { setLogIn, setRegistration } from '../../api/api';
 import { AUTHENTICATE, REGISTRATION, logIn, logInError } from '../actions/auth';
 
 export function* authenticateSaga(action) {
+  console.log('authenticateSaga')
   const { email, password } = action.payload;
   const data = yield call(setLogIn, email, password);
 
