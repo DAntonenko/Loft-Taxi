@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setCard } from '../../store/actions/card';
+import { getCardData } from '../../store/actions/card';
 import Input from '../Input/Input'
 import Button from '../Button/Button';
 
 import './Profile.scss';
+import { store } from '../../store/store';
 
-export const Profile = ({ setCard }) => {
+export const Profile = ({ setCard, token }) => {
   Profile.propTypes = {
     setCard: PropTypes.func,
   }
@@ -19,6 +21,7 @@ export const Profile = ({ setCard }) => {
         <p className='profile__subtitle'>Введите платёжные данные</p>
         <section className='profile__card-data'>
           <form
+            id='cardDataForm'
             className='profile__form'
             onSubmit={(e) => {
               e.preventDefault();
@@ -27,7 +30,7 @@ export const Profile = ({ setCard }) => {
               const expiryDateInput = e.nativeEvent.target[2];
               const cvcInput = e.nativeEvent.target[3];
               // pushCardData(cardNumberInput.value, expiryDateInput.value, cardNameInput.value, cvcInput.value, 'rec0eaT1jsO9X7F49');
-              setCard(cardNumberInput.value, expiryDateInput.value, cardNameInput.value, cvcInput.value);
+              setCard(cardNumberInput.value, expiryDateInput.value, cardNameInput.value, cvcInput.value, token);
             }}
           >
             <Input className='profile__input' id='name' type='text' name='name' placeholder='Loft' label='Имя владельца' />
@@ -43,10 +46,25 @@ export const Profile = ({ setCard }) => {
             <div className='profile__card-master-card-icon' />
           </div>
         </section>
-        <Button className='profile__submit-button' standardAppearance text='Сохранить' type='submit' />
+        <Button
+          className='profile__submit-button'
+          standardAppearance text='Сохранить'
+          type='submit'
+          form='cardDataForm'
+        />
       </div>
     </div>
   )
 }
 
-export default connect(null, {setCard})(Profile);
+const mapStateToProps = function (state) {
+  return {
+    cardNumber: state.card.cardNumber,
+    expiryDate: state.card.expiryDate,
+    cardName: state.card.cardName,
+    cvc: state.card.cvc,
+    token: state.auth.token,
+  }
+}
+
+export default connect(mapStateToProps, {setCard})(Profile);

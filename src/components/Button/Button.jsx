@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import './Button.scss';
 
-const Button = ({ className, standardAppearance, text, type, disabled, onClick }) => {
+const Button = ({ className, standardAppearance, text, type, form, disabled, onClick }) => {
   Button.propTypes = {
     className: PropTypes.string,
     standardAppearance: PropTypes.bool,
     text: PropTypes.string.isRequired,
     type: PropTypes.oneOf(['button', 'reset', 'submit']).isRequired,
-    disabled: PropTypes.string,
+    form: PropTypes.string,
+    disabled: PropTypes.bool,
     onClick: PropTypes.func,
   }
 
@@ -17,6 +18,7 @@ const Button = ({ className, standardAppearance, text, type, disabled, onClick }
     <button
       className={`${standardAppearance ? 'button' : ''} ${className ? className : ''}`}
       type={type}
+      form = {form}
       disabled={disabled}
       onClick = {onClick}
     >

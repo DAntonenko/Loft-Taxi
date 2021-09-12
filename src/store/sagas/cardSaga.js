@@ -7,7 +7,7 @@ export function* pushCardDataSaga(action) {
   const data = yield call(pushCardDataToServer, cardNumber, expiryDate, cardName, cvc, token);
 
   if (data.success) {
-    yield put(setCard(cardNumber, expiryDate, cardName, cvc, token)); //откуда здесь должен взяться токен?
+    yield put(setCard(cardNumber, expiryDate, cardName, cvc, token));
   }
 }
 

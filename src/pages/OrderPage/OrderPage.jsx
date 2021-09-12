@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCardData } from '../../store/actions/card';
+import { getAddressesList } from '../../store/actions/addresses';
 import Header from '../../components/Header/Header';
 import Map from '../../components/Map/Map';
 import Profile from '../../components/Profile/Profile';
@@ -9,7 +10,7 @@ import TaxiOrdering from '../../components/TaxiOrdering/TaxiOrdering';
 
 import './OrderPage.scss';
 
-export const OrderPage = ({ cardNumber, expiryDate, cardName, cvc, getCardData }) => {
+export const OrderPage = ({ cardNumber, expiryDate, cardName, cvc, getCardData, token, addresses }) => {
   OrderPage.propTypes = {
     cardNumber: PropTypes.number,
     expiryDate: PropTypes.string,
@@ -23,6 +24,7 @@ export const OrderPage = ({ cardNumber, expiryDate, cardName, cvc, getCardData }
   const onMapClickHandler = () => setCurrentMode('order');
   const onProfileClickHandler = () => setCurrentMode('profile');
 
+  // Automatic switch to Profile if no card data
   useEffect(() => {
     if (
       !cardNumber ||
@@ -33,6 +35,17 @@ export const OrderPage = ({ cardNumber, expiryDate, cardName, cvc, getCardData }
       setCurrentMode('profile');
     }
   }, [cardNumber, expiryDate, cardName, cvc]);
+
+  
+  // useEffect(() => {
+  //   getCardData(token);
+  // });
+
+  // useEffect(() => {
+  //   getAddressesList();
+  // });
+
+  console.log(addresses)
 
   return (
     <div className='order-page'>
@@ -58,7 +71,9 @@ const mapStateToProps = function (state) {
     expiryDate: state.card.expiryDate,
     cardName: state.card.cardName,
     cvc: state.card.cvc,
+    // token: state.auth.token,  //не забыть передавать токен
+    addresses: state.addresses.addresses,
   }
 }
 
-export default connect(mapStateToProps, {getCardData})(OrderPage);
+export default connect(mapStateToProps, {getAddressesList})(OrderPage);
