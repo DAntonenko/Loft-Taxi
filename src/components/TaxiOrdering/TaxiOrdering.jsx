@@ -1,29 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { exact } from 'prop-types';
+import { connect } from 'react-redux';
+import { getAddressesList } from '../../store/actions/addresses';
 import Button from '../Button/Button';
 
 import './TaxiOrdering.scss';
 
-export const TaxiOrdering = ({ routeStartOptions, routeEndOptions}) => {
+export const TaxiOrdering = ({ addresses }) => {
   TaxiOrdering.propTypes = {
-    routeStartOptions: PropTypes.exact({
-      "addresses": PropTypes.arrayOf(PropTypes.string),
-    }),
-    routeEndOptions: PropTypes.exact({
-      "addresses": PropTypes.arrayOf(PropTypes.string),
-    }),
+    addresses: PropTypes.arrayOf(exact({
+      value: PropTypes.string,
+      label: PropTypes.string,
+    }))
   }
+
   return (
     <form className='taxi-ordering'>
       <select className='taxi-ordering__select' name='routeStart'>
-        {routeStartOptions.addresses.map(address => <option key={address} value={address}>{address}</option>)}
+        {addresses.map(address => address.hasOwnProperty('value') && <option key={address.value} value={address.value}>{address.value}</option>)}
       </select>
       <select className='taxi-ordering__select' name='routeStart'>
-        {routeEndOptions.addresses.map(address => <option key={address} value={address}>{address}</option>)}
+        {addresses.map(address => address.hasOwnProperty('value') && <option key={address.value} value={address.value}>{address.value}</option>)}
       </select>
       <Button type='submit' standardAppearance text='Заказать' />
     </form>
   )
 };
 
-export default TaxiOrdering;
+const mapStateToProps = function (state) {
+  return {
+    addresses: state.addresses.addresses,
+  }
+}
+
+export default connect(mapStateToProps, {getAddressesList})(TaxiOrdering);

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCardData } from '../../store/actions/card';
-import { getAddressesList } from '../../store/actions/addresses';
 import Header from '../../components/Header/Header';
 import Map from '../../components/Map/Map';
 import Profile from '../../components/Profile/Profile';
@@ -12,10 +11,10 @@ import './OrderPage.scss';
 
 export const OrderPage = ({ cardNumber, expiryDate, cardName, cvc, getCardData, token, addresses }) => {
   OrderPage.propTypes = {
-    cardNumber: PropTypes.number,
+    cardNumber: PropTypes.string,
     expiryDate: PropTypes.string,
     cardName: PropTypes.string,
-    cvc: PropTypes.number,
+    cvc: PropTypes.string,
     getCardData: PropTypes.func,
   }
  
@@ -40,25 +39,14 @@ export const OrderPage = ({ cardNumber, expiryDate, cardName, cvc, getCardData, 
   // useEffect(() => {
   //   getCardData(token);
   // });
-
-  // useEffect(() => {
-  //   getAddressesList();
-  // });
-
-  console.log(addresses)
-
+  
   return (
     <div className='order-page'>
       <Header
         passedOnMapClickHandler = {onMapClickHandler}
         passedOnProfileClickHandler = {onProfileClickHandler}
       />
-      { currentMode === 'order' &&
-        <TaxiOrdering
-          routeStartOptions={{"addresses":["Пулково (LED)","Эрмитаж","Кинотеатр Аврора","Мариинский театр"]}}
-          routeEndOptions={{"addresses":["Пулково (LED)","Эрмитаж","Кинотеатр Аврора","Мариинский театр"]}}
-        />
-      }
+      { currentMode === 'order' && <TaxiOrdering /> }
       { currentMode === 'profile' && <Profile /> }
       <Map />
     </div>
@@ -72,8 +60,7 @@ const mapStateToProps = function (state) {
     cardName: state.card.cardName,
     cvc: state.card.cvc,
     // token: state.auth.token,  //не забыть передавать токен
-    addresses: state.addresses.addresses,
   }
 }
 
-export default connect(mapStateToProps, {getAddressesList})(OrderPage);
+export default connect(mapStateToProps, {getCardData})(OrderPage);

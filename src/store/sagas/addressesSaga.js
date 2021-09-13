@@ -1,14 +1,12 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { getAvailableAddressesFromServer } from '../../api/api';
 import { GET_ADDRESSES_LIST, setAddressesList } from '../actions/addresses';
-import addresses from '../reducers/addresses';
 
 export function* getAddressesSaga(action) {
-  console.log('getAddressesSaga')
   const data = yield call(getAvailableAddressesFromServer);
 
   if (data.hasOwnProperty('addresses')) {
-    const addressesList = addresses.reduce((prev, item) => {
+    const addressesList = data.addresses.reduce((prev, item) => {
       prev.push({value: item, label: item});
 
       return prev;

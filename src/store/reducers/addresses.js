@@ -9,7 +9,6 @@ const initialState = {
 export default function addresses(state = initialState, action) {
   switch(action.type) {
     case SET_ADDRESSES_LIST: {
-      console.log('addressesReducer')
       return {
         ...state,
         addresses: action.payload.addresses,

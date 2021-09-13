@@ -14,7 +14,6 @@ export const App = ({ isLoggedIn, error, getAddressesList }) => {
   }
 
   useEffect(() => {
-    console.log('effect starts and must start getAddressesList action')
     getAddressesList();
   });
 
