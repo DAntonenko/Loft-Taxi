@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setCard } from '../../store/actions/card';
-import { getCardData } from '../../store/actions/card';
 import Input from '../Input/Input'
 import Button from '../Button/Button';
 
 import './Profile.scss';
-import { store } from '../../store/store';
 
 export const Profile = ({ setCard, token }) => {
   Profile.propTypes = {

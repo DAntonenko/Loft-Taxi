@@ -9,7 +9,7 @@ const initialState = {
   cardName: localStorageData.cardName,
   cvc: localStorageData.cvc,
   isCardData: localStorageData.isCardData,
-  error: localStorageData.error,
+  error: null,
 };
 
 export default function card(state = initialState, action) {
@@ -25,7 +25,7 @@ export default function card(state = initialState, action) {
         cardName: cardName,
         cvc: cvc,
         isCardData: true,
-        error: '',
+        error: null,
       };
     }
 

@@ -1,9 +1,9 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { pushCardDataToServer, getCardDataFromServer,  } from '../../api/api';
-import { PUSH_CARD_DATA, GET_CARD_DATA, setCard, setCardError } from '../actions/card';
+import { SET_CARD, GET_CARD_DATA, setCard, setCardError } from '../actions/card';
 
-export function* pushCardDataSaga(action) {
-  console.log('SAGA_CARD_PUSH')
+export function* setCardSaga(action) {
+  console.log('setCardSaga')
   const { cardNumber, expiryDate, cardName, cvc, token } = action.payload;
   const data = yield call(pushCardDataToServer, cardNumber, expiryDate, cardName, cvc, token);
 
@@ -26,6 +26,6 @@ export function* getCardDataSaga(action) {
 }
 
 export function* cardSaga() {
-  yield takeEvery(PUSH_CARD_DATA, pushCardDataSaga);
+  yield takeEvery(SET_CARD, setCardSaga);
   yield takeEvery(GET_CARD_DATA, getCardDataSaga);
 }
