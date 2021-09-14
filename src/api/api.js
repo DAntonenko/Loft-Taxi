@@ -64,6 +64,7 @@ export const getAvailableAddressesFromServer = async () => {
 };
 
 export const getRoutePointsFromServer = async (startAddress, endAddress) => {
-  return fetch(`https://loft-taxi.glitch.me/route?address1=${endAddress}&address2=${endAddress}`)
+  return fetch(`https://loft-taxi.glitch.me/route?address1=${startAddress}&address2=${endAddress}`)
+  // return fetch(`https://loft-taxi.glitch.me/route?address1=Эрмитаж&address2=Кинотеатр Аврора`)
   .then(res => res.json())
 };
