@@ -3,7 +3,6 @@ import { pushCardDataToServer, getCardDataFromServer,  } from '../../api/api';
 import { SET_CARD, GET_CARD_DATA, setCard, setCardError } from '../actions/card';
 
 export function* setCardSaga(action) {
-  console.log('setCardSaga')
   const { cardNumber, expiryDate, cardName, cvc, token } = action.payload;
   const data = yield call(pushCardDataToServer, cardNumber, expiryDate, cardName, cvc, token);
 

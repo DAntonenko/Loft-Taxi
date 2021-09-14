@@ -61,7 +61,6 @@ class Map extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.coordinates)
     this.drawRoute(this.map, this.props.coordinates);
   }
 
