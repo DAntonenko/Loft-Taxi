@@ -18,14 +18,14 @@ export default function addresses(state = initialState, action) {
     case START_ADDRESS: {
       return {
         ...state,
-        addresses: action.payload.startAddress,
+        startAddress: action.payload.startAddress,
       };
     }
 
     case END_ADDRESS: {
       return {
         ...state,
-        addresses: action.payload.endAddress,
+        endAddress: action.payload.endAddress,
       };
     }
     

@@ -10,13 +10,13 @@ export const getLoginDataFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem( 'loginData' ));
 };
 
-export const setCardDataToLocalStorage = (cardNumber, expiryDate, cardName, cvc, token) => {
-  localStorage.setItem('cardData', JSON.stringify({ cardNumber, expiryDate, cardName, cvc, token }));
+export const setCardDataToLocalStorage = (cardNumber, expiryDate, cardName, cvc, isCardData) => {
+  localStorage.setItem('cardData', JSON.stringify({ cardNumber, expiryDate, cardName, cvc, isCardData }));
 };
 
 export const getCardDataFromLocalStorage = () => {
   if( !localStorage.getItem( 'cardData' )) {
-    localStorage.setItem('cardData', JSON.stringify({ cardNumber: '', expiryDate: '', cardName: '', cvc: '', token: '' }));
+    localStorage.setItem('cardData', JSON.stringify({ cardNumber: '', expiryDate: '', cardName: '', cvc: '', isCardData: false }));
   }
 
   return JSON.parse(localStorage.getItem( 'cardData' ));

@@ -29,7 +29,6 @@ export const Profile = ({ setCard, token }) => {
               const cardNumberInput = e.nativeEvent.target[1];
               const expiryDateInput = e.nativeEvent.target[2];
               const cvcInput = e.nativeEvent.target[3];
-              // pushCardData(cardNumberInput.value, expiryDateInput.value, cardNameInput.value, cvcInput.value, 'rec0eaT1jsO9X7F49');
               setCard(cardNumberInput.value, expiryDateInput.value, cardNameInput.value, cvcInput.value, token);
             }}
           >

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCardData } from '../../store/actions/card';
+import { getRoute } from '../../store/actions/map';
 import Header from '../../components/Header/Header';
 import Map from '../../components/Map/Map';
 import Profile from '../../components/Profile/Profile';
@@ -9,13 +10,10 @@ import TaxiOrdering from '../../components/TaxiOrdering/TaxiOrdering';
 
 import './OrderPage.scss';
 
-export const OrderPage = ({ cardNumber, expiryDate, cardName, cvc, getCardData, token, addresses }) => {
+export const OrderPage = ({ isCardData, getCardData, token, startAddress, endAddress, getRoute}) => {
   OrderPage.propTypes = {
-    cardNumber: PropTypes.string,
-    expiryDate: PropTypes.string,
-    cardName: PropTypes.string,
-    cvc: PropTypes.string,
     getCardData: PropTypes.func,
+    isCardData: PropTypes.bool,
   }
  
   const [ currentMode, setCurrentMode ] = useState('order');
@@ -25,20 +23,21 @@ export const OrderPage = ({ cardNumber, expiryDate, cardName, cvc, getCardData, 
 
   // Automatic switch to Profile if no card data
   useEffect(() => {
-    if (
-      !cardNumber ||
-      !expiryDate ||
-      !cardName ||
-      !cvc
-    ) {
+    if (!isCardData) {
       setCurrentMode('profile');
     }
-  }, [cardNumber, expiryDate, cardName, cvc]);
+  }, [isCardData]);
 
   
-  // useEffect(() => {
-  //   getCardData(token);
-  // });
+  useEffect(() => {
+    getCardData(token);
+  });
+
+  useEffect(() => {
+    if (startAddress && endAddress) {
+      getRoute(startAddress, endAddress);
+    }
+  });
   
   return (
     <div className='order-page'>
@@ -55,12 +54,11 @@ export const OrderPage = ({ cardNumber, expiryDate, cardName, cvc, getCardData, 
 
 const mapStateToProps = function (state) {
   return {
-    cardNumber: state.card.cardNumber,
-    expiryDate: state.card.expiryDate,
-    cardName: state.card.cardName,
-    cvc: state.card.cvc,
-    // token: state.auth.token,  //не забыть передавать токен
+    isCardData: state.card.isCardData,
+    token: state.auth.token,
+    startAddress: state.addresses.startAddress,
+    endAddress: state.addresses.endAddress,
   }
 }
 
-export default connect(mapStateToProps, {getCardData})(OrderPage);
+export default connect(mapStateToProps, {getCardData, getRoute})(OrderPage);
