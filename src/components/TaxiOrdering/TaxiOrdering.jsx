@@ -16,25 +16,42 @@ export const TaxiOrdering = ({ addresses, setStartAddress, setEndAddress }) => {
 
   const [ currentMode, setCurrentMode ] = useState('order');
 
+  const [ selectedStartAddress, setSelectedStartAddress ] = useState('');
+  const [ selectedEndAddress, setSelectedEndAddress ] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const startAddress = e.nativeEvent.target[0];
+    const endAddress = e.nativeEvent.target[1];
+    setStartAddress(startAddress.value);
+    setEndAddress(endAddress.value);
+    setCurrentMode('reorder');
+  };
+
+  const handleStartAddressChange = e => {
+    console.log(e.target.value)
+    setSelectedStartAddress(e.target.value);
+  };
+
+  const handleEndAddressChange = e => {
+    console.log(e.target.value)
+    setSelectedEndAddress(e.target.value);
+  };
+
   return (
     <>
     { currentMode === 'order' &&
       <form
         className='taxi-ordering'
-        onSubmit={(e) => {
-          e.preventDefault();
-          const startAddress = e.nativeEvent.target[0];
-          const endAddress = e.nativeEvent.target[1];
-          setStartAddress(startAddress.value);
-          setEndAddress(endAddress.value);
-          setCurrentMode('reorder');
-        }}
+        onSubmit={(e) => handleSubmit(e)}
       >
-        <select className='taxi-ordering__select' name='routeStart'>
-          {addresses.map(address => address.hasOwnProperty('value') && <option key={address.value} value={address.value}>{address.value}</option>)}
+        <select className='taxi-ordering__select' name='routeStart' onChange={handleStartAddressChange}>
+          {addresses.filter(address => address !== selectedEndAddress).map(address => address.hasOwnProperty('value') &&
+          <option key={address.value} value={address.value}>{address.value}</option>)}
         </select>
-        <select className='taxi-ordering__select' name='routeStart'>
-          {addresses.map(address => address.hasOwnProperty('value') && <option key={address.value} value={address.value}>{address.value}</option>)}
+        <select className='taxi-ordering__select' name='routeStart' onChange={handleEndAddressChange}>
+          {addresses.filter(address => address !== selectedStartAddress).map(address => address.hasOwnProperty('value') &&
+          <option key={address.value} value={address.value}>{address.value}</option>)}
         </select>
         <Button type='submit' standardAppearance text='Заказать' />
       </form>
