@@ -27,7 +27,6 @@ export const OrderPage = ({ isCardData, getCardData, token, startAddress, endAdd
       setCurrentMode('profile');
     }
   }, [isCardData]);
-
   
   useEffect(() => {
     getCardData(token);

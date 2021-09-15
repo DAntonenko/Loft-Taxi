@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes, { exact } from 'prop-types';
 import { connect } from 'react-redux';
 import { setStartAddress, setEndAddress } from '../../store/actions/addresses';
@@ -14,25 +14,47 @@ export const TaxiOrdering = ({ addresses, setStartAddress, setEndAddress }) => {
     }))
   }
 
+  const [ currentMode, setCurrentMode ] = useState('order');
+
   return (
-    <form
-      className='taxi-ordering'
-      onSubmit={(e) => {
-        e.preventDefault();
-        const startAddress = e.nativeEvent.target[0];
-        const endAddress = e.nativeEvent.target[1];
-        setStartAddress(startAddress.value);
-        setEndAddress(endAddress.value);
-      }}
-    >
-      <select className='taxi-ordering__select' name='routeStart'>
-        {addresses.map(address => address.hasOwnProperty('value') && <option key={address.value} value={address.value}>{address.value}</option>)}
-      </select>
-      <select className='taxi-ordering__select' name='routeStart'>
-        {addresses.map(address => address.hasOwnProperty('value') && <option key={address.value} value={address.value}>{address.value}</option>)}
-      </select>
-      <Button type='submit' standardAppearance text='Заказать' />
-    </form>
+    <>
+    { currentMode === 'order' &&
+      <form
+        className='taxi-ordering'
+        onSubmit={(e) => {
+          e.preventDefault();
+          const startAddress = e.nativeEvent.target[0];
+          const endAddress = e.nativeEvent.target[1];
+          setStartAddress(startAddress.value);
+          setEndAddress(endAddress.value);
+          setCurrentMode('reorder');
+        }}
+      >
+        <select className='taxi-ordering__select' name='routeStart'>
+          {addresses.map(address => address.hasOwnProperty('value') && <option key={address.value} value={address.value}>{address.value}</option>)}
+        </select>
+        <select className='taxi-ordering__select' name='routeStart'>
+          {addresses.map(address => address.hasOwnProperty('value') && <option key={address.value} value={address.value}>{address.value}</option>)}
+        </select>
+        <Button type='submit' standardAppearance text='Заказать' />
+      </form>
+    }
+    { currentMode === 'reorder' &&
+      <div className='taxi-ordering'>
+        <h2 className='taxi-ordering__title'>Заказ размещён</h2>
+        <p className='taxi-ordering__message'>
+          Ваше такси уже едет к&nbsp;вам. Прибудет приблизительно через 10&nbsp;минут.
+        </p>
+        <Button
+          type='button'
+          standardAppearance text='Сделать новый заказ'
+          onClick={() => {
+            setCurrentMode('order');
+          }}
+        />
+      </div>
+    }
+    </>
   )
 };
 
