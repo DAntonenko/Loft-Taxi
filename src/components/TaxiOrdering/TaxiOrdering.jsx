@@ -16,8 +16,8 @@ export const TaxiOrdering = ({ addresses, setStartAddress, setEndAddress }) => {
 
   const [ currentMode, setCurrentMode ] = useState('order');
 
-  const [ selectedStartAddress, setSelectedStartAddress ] = useState('');
-  const [ selectedEndAddress, setSelectedEndAddress ] = useState('');
+  const [ selectedStartAddress, setSelectedStartAddress ] = useState('Эрмитаж');
+  const [ selectedEndAddress, setSelectedEndAddress ] = useState('Пулково (LED)');
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -46,11 +46,11 @@ export const TaxiOrdering = ({ addresses, setStartAddress, setEndAddress }) => {
         onSubmit={(e) => handleSubmit(e)}
       >
         <select className='taxi-ordering__select' name='routeStart' onChange={handleStartAddressChange}>
-          {addresses.filter(address => address !== selectedEndAddress).map(address => address.hasOwnProperty('value') &&
+          {addresses.filter(address => address.value !== selectedEndAddress).map(address => address.hasOwnProperty('value') &&
           <option key={address.value} value={address.value}>{address.value}</option>)}
         </select>
         <select className='taxi-ordering__select' name='routeStart' onChange={handleEndAddressChange}>
-          {addresses.filter(address => address !== selectedStartAddress).map(address => address.hasOwnProperty('value') &&
+          {addresses.filter(address => address.value !== selectedStartAddress).map(address => address.hasOwnProperty('value') &&
           <option key={address.value} value={address.value}>{address.value}</option>)}
         </select>
         <Button type='submit' standardAppearance text='Заказать' />

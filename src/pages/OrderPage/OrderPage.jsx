@@ -45,7 +45,7 @@ export const OrderPage = ({ isCardData, getCardData, token, startAddress, endAdd
         passedOnProfileClickHandler = {onProfileClickHandler}
       />
       { currentMode === 'order' && <TaxiOrdering /> }
-      { currentMode === 'profile' && <Profile /> }
+      { currentMode === 'profile' && <Profile passedOnMapClickHandler = {onMapClickHandler} /> }
       <Map />
     </div>
   )

@@ -7,7 +7,7 @@ import Button from '../Button/Button';
 
 import './Profile.scss';
 
-export const Profile = ({ setCard, token }) => {
+export const Profile = ({ setCard, token, passedOnMapClickHandler }) => {
   Profile.propTypes = {
     setCard: PropTypes.func,
   }
@@ -28,6 +28,7 @@ export const Profile = ({ setCard, token }) => {
               const expiryDateInput = e.nativeEvent.target[2];
               const cvcInput = e.nativeEvent.target[3];
               setCard(cardNumberInput.value, expiryDateInput.value, cardNameInput.value, cvcInput.value, token);
+              passedOnMapClickHandler();
             }}
           >
             <Input className='profile__input' id='name' type='text' name='name' placeholder='Loft' label='Имя владельца' />

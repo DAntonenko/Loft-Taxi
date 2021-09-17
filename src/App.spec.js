@@ -4,15 +4,18 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { App } from './App';
+import { getAddressesList } from './store/actions/addresses';
 
 jest.mock('./pages/StartPage/StartPage', () => (() => <div />))
 jest.mock('./pages/OrderPage/OrderPage', () => (() => <div />))
 jest.mock('./store/actions/addresses', () => ({
-  getAddressesList: jest.fn(() => ({addresses: [{value: '1', label: '1'}]}))
+  getAddressesList: jest.fn(() => ({}))
 }))
 
 describe('App', () => {
   it('renders correctly', () => {
+    getAddressesList.mockImplementation(() => ({}))
+
     const {container} = render(
       <BrowserRouter>
         <Provider store={store}>
