@@ -1,6 +1,7 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { pushCardDataToServer, getCardDataFromServer,  } from '../../api/api';
-import { SET_CARD, GET_CARD_DATA, setCard, setCardError } from '../actions/card';
+// import { SET_CARD, GET_CARD_DATA, setCard, setCardError } from '../actions/card';
+import { SET_CARD, GET_CARD_DATA, setCard } from '../actions/card';
 
 export function* setCardSaga(action) {
   const { cardNumber, expiryDate, cardName, cvc, token } = action.payload;

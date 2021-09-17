@@ -1,6 +1,6 @@
 import { SET_ADDRESSES_LIST, START_ADDRESS, END_ADDRESS } from '../actions/addresses';
 
-const initialState = {
+export const initialState = {
   addresses: [],
   startAddress: '',
   endAddress: '',

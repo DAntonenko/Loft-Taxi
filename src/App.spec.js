@@ -7,6 +7,9 @@ import { App } from './App';
 
 jest.mock('./pages/StartPage/StartPage', () => (() => <div />))
 jest.mock('./pages/OrderPage/OrderPage', () => (() => <div />))
+jest.mock('./store/actions/addresses', () => ({
+  getAddressesList: jest.fn(() => ({addresses: [{value: '1', label: '1'}]}))
+}))
 
 describe('App', () => {
   it('renders correctly', () => {
