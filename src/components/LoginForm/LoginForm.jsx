@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { authenticate } from '../../store/actions/auth';
 import { useDispatch } from 'react-redux';
@@ -9,18 +8,13 @@ import Button from '../Button/Button';
 
 import './LoginForm.scss';
 
-export const LoginForm = () => {
-  LoginForm.propTypes = {
-    authenticate: PropTypes.func,
-  }
+const LoginForm = () => {
 
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     const { email, password } = data;
-    console.log(email)
-    console.log(password)
     dispatch(authenticate(email, password));
   }
 
@@ -30,23 +24,22 @@ export const LoginForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className='login-form__form-title'>Войти</h2>
-      <input
-        {...register('email')}
+      <Input
         className='login-form__input'
         label='Email'
         id='email'
         type='email'
         name='email'
-        placeholder='mail@mail.ru'
+        register={register}
       />
-      <input
-        {...register('password')}
+      <Input
         className='login-form__input'
         label='Пароль'
         id='password'
         type='password'
         name='password'
         placeholder='*************'
+        register={register}
       />
       <Button
         className = 'login-form__forgot-password-button'

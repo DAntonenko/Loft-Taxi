@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { setCard } from '../../store/actions/card';
 import Input from '../Input/Input'
@@ -16,6 +18,15 @@ export const Profile = ({ setCard, token, passedOnMapClickHandler }) => {
 
   const [ currentStep, setCurrentStep ] = useState('setCard');
 
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    const { cardNumber, expiryDate, cardName, cvc } = data;
+    dispatch(setCard(cardNumber, expiryDate, cardName, cvc, token));
+    setCurrentStep('goToMap');
+  }
+
   return (
     <div className='profile'>
       {currentStep === 'setCard' &&
@@ -26,20 +37,44 @@ export const Profile = ({ setCard, token, passedOnMapClickHandler }) => {
             <form
               id='cardDataForm'
               className='profile__form'
-              onSubmit={(e) => {
-                e.preventDefault();
-                const cardNameInput = e.nativeEvent.target[0];
-                const cardNumberInput = e.nativeEvent.target[1];
-                const expiryDateInput = e.nativeEvent.target[2];
-                const cvcInput = e.nativeEvent.target[3];
-                setCard(cardNumberInput.value, expiryDateInput.value, cardNameInput.value, cvcInput.value, token);
-                setCurrentStep('goToMap');
-              }}
+              onSubmit={handleSubmit(onSubmit)}
             >
-              <Input className='profile__input' id='name' type='text' name='name' placeholder='Loft' label='Имя владельца' />
-              <Input className='profile__input' id='number' type='number' name='number' placeholder='5545 2300 3432 4521' label='Номер карты' />
-              <Input className='profile__input profile__input--narrow' id='date' type='number' name='date' placeholder='05/08' label='MM/YY' />
-              <Input className='profile__input profile__input--narrow' id='cvc' type='number' name='cvc' placeholder='667' label='CVC' />
+              <Input
+                className='profile__input'
+                id='cardName'
+                type='text'
+                name='cardName'
+                placeholder='Loft'
+                label='Имя владельца'
+                register={register}
+              />
+              <Input
+                className='profile__input'
+                id='cardNumber'
+                type='number'
+                name='cardNumber'
+                placeholder='5545 2300 3432 4521'
+                label='Номер карты'
+                register={register}
+              />
+              <Input
+                className='profile__input profile__input--narrow'
+                id='expiryDate'
+                type='number'
+                name='expiryDate'
+                placeholder='05/08'
+                label='MM/YY'
+                register={register}
+              />
+              <Input
+                className='profile__input profile__input--narrow'
+                id='cvc'
+                type='number'
+                name='cvc'
+                placeholder='667'
+                label='CVC'
+                register={register}
+              />
             </form>
             <div className='profile__card'>
               <div className='profile__card-emblem' />

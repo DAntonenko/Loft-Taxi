@@ -27,8 +27,8 @@ const Input = ({ className, id, type, name, placeholder, label, required, regist
         id={id}
         type={type}
         name={name}
-        // {...register(label)}
-        {...(placeholder ? placeholder={placeholder} : {})}
+        {...register(name)}
+        placeholder={placeholder}
       />
     </div>
   )

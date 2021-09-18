@@ -1,28 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { registration } from '../../store/actions/auth';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './RegistrationForm.scss';
 
-export const RegistrationForm = ({ registration }) => {
-  RegistrationForm.propTypes = {
-    registration: PropTypes.func,
+export const RegistrationForm = () => {
+
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    const { email, password, name } = data;
+    dispatch(registration(email, password, name, 'Dude'));
   }
 
   return (
     <form
       className='registration-form'
-      onSubmit={e => {
-        e.preventDefault();
-        const emailInput = e.nativeEvent.target[0];
-        const nameInput = e.nativeEvent.target[1];
-        const passwordInput = e.nativeEvent.target[2];
-        registration(emailInput.value, passwordInput.value, nameInput.value, 'Dude');
-      }}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className='registration-form__form-title'>Регистрация</h2>
       <Input
@@ -33,6 +32,7 @@ export const RegistrationForm = ({ registration }) => {
         type='email'
         name='email'
         placeholder='mail@mail.ru'
+        register={register}
       />
       <Input
         className='registration-form__input'
@@ -42,6 +42,7 @@ export const RegistrationForm = ({ registration }) => {
         type='text'
         name='name'
         placeholder='mail@mail.ru'
+        register={register}
       />
       <Input
         className='registration-form__input'
@@ -51,6 +52,7 @@ export const RegistrationForm = ({ registration }) => {
         type='password'
         name='password'
         placeholder='*************'
+        register={register}
       />
       <Button
         className='registration-form__submit-button'
@@ -71,7 +73,4 @@ export const RegistrationForm = ({ registration }) => {
   )
 }
 
-export default connect(
-  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
-  { registration }
-)(RegistrationForm);
+export default RegistrationForm;
