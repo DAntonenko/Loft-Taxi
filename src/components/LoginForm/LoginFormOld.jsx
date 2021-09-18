@@ -1,37 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
-import { authenticate } from '../../store/actions/auth';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { authenticate } from '../../store/actions/auth';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './LoginForm.scss';
 
-export const LoginForm = () => {
+export const LoginForm = ({ authenticate }) => {
   LoginForm.propTypes = {
     authenticate: PropTypes.func,
-  }
-
-  const dispatch = useDispatch();
-  const { logIn, handleSubmit } = useForm();
-
-  const onSubmit = (data) => {
-    const { email, password } = data;
-    console.log(email)
-    console.log(password)
-    dispatch(authenticate(email, password));
   }
 
   return (
     <form
       className='login-form'
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={(e) => {
+        e.preventDefault();
+        const emailInput = e.nativeEvent.target[0];
+        const passwordInput = e.nativeEvent.target[1];
+        authenticate(emailInput.value, passwordInput.value);
+      }}
     >
       <h2 className='login-form__form-title'>Войти</h2>
-      <input
-        ref={logIn}
+      <Input
         className='login-form__input'
         label='Email'
         id='email'
@@ -39,8 +32,7 @@ export const LoginForm = () => {
         name='email'
         placeholder='mail@mail.ru'
       />
-      <input
-        ref={logIn}
+      <Input
         className='login-form__input'
         label='Пароль'
         id='password'
@@ -71,4 +63,7 @@ export const LoginForm = () => {
   )
 }
 
-export default LoginForm;
+export default connect(
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  { authenticate }
+)(LoginForm);

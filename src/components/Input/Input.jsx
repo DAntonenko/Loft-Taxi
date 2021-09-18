@@ -3,7 +3,7 @@ import PropTypes  from 'prop-types';
 
 import './Input.scss';
 
-const Input = ({ className, id, type, name, placeholder, label ,required }) => {
+const Input = ({ className, id, type, name, placeholder, label, required, register }) => {
 
   Input.propTypes = {
     className: PropTypes.string,
@@ -27,6 +27,7 @@ const Input = ({ className, id, type, name, placeholder, label ,required }) => {
         id={id}
         type={type}
         name={name}
+        // {...register(label)}
         {...(placeholder ? placeholder={placeholder} : {})}
       />
     </div>
