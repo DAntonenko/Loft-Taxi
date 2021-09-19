@@ -11,6 +11,15 @@
 
   &__select {
     display: block;
+    width: 100%;
+    padding: 20px;
+    font-size: 18px;
+    border: none;
+    border-bottom: 1px solid var(--gray-2);
+
+    &:last-of-type {
+      margin-bottom: 40px;
+    }
   }
 
   &__title {
