@@ -9,7 +9,7 @@ import Button from '../Button/Button';
 
 import './Profile.scss';
 
-export const Profile = ({ setCard, token, passedOnMapClickHandler }) => {
+export const Profile = ({ cardNumber, expiryDate, setCard, token, passedOnMapClickHandler }) => {
   Profile.propTypes = {
     setCard: PropTypes.func,
     token: PropTypes.string,
@@ -78,8 +78,8 @@ export const Profile = ({ setCard, token, passedOnMapClickHandler }) => {
             </form>
             <div className='profile__card'>
               <div className='profile__card-emblem' />
-              <p className='profile__card-date'>05/08</p>
-              <p className='profile__card-number'>5545 &nbsp;&nbsp;2300 &nbsp;&nbsp;3432 &nbsp;&nbsp;4521</p>
+              <p className='profile__card-date'>{expiryDate ? expiryDate : '05/08'}</p>
+              <p className='profile__card-number'>{cardNumber ? cardNumber : '5545 &nbsp;&nbsp;2300 &nbsp;&nbsp;3432 &nbsp;&nbsp;4521'}</p>
               <div className='profile__card-chip' />
               <div className='profile__card-master-card-icon' />
             </div>

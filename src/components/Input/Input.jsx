@@ -3,7 +3,7 @@ import PropTypes  from 'prop-types';
 
 import './Input.scss';
 
-const Input = ({ className, id, type, name, placeholder, label, required, register }) => {
+const Input = ({ className, id, type, name, placeholder, label, required, register, value }) => {
 
   Input.propTypes = {
     className: PropTypes.string,
