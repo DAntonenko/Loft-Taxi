@@ -8,7 +8,7 @@ import Button from '../Button/Button';
 
 import './LoginForm.scss';
 
-const LoginForm = () => {
+export const LoginForm = () => {
 
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();

@@ -5,9 +5,8 @@ import { TaxiOrdering } from './TaxiOrdering';
 describe('TaxiOrdering', () => {
   it('renders correctly', () => {
     const { container } = render(
-        <TaxiOrdering />
+        <TaxiOrdering addresses={[]}/>
     )
-    expect(container.innerHTML).toMatch('Заказать')
-    expect(container.innerHTML).toMatch('Сделать новый заказ')
+    expect(container.getElementsByTagName('button')[0].innerHTML).toMatch('Заказать')
   })
 })

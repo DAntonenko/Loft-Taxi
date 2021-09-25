@@ -12,11 +12,10 @@ describe('OrderPage', () => {
     const {container} = render(
       <BrowserRouter>
         <Provider store={store}>
-          <OrderPage />
+          <OrderPage getCardData={() => {}} />
         </Provider>
       </BrowserRouter>
     )
-    // expect(container.innerHTML).toMatch('Header')
-    // expect(container.innerHTML).toMatch('Map')
+    expect(container.getElementsByTagName('header')[0].className).toMatch('header')
   })
 })
