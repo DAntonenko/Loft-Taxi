@@ -13,11 +13,10 @@ describe('App', () => {
     const {container} = render(
       <BrowserRouter>
         <Provider store={store}>
-          <App />
+          <App getAddressesList={() => {}}/>
         </Provider>
       </BrowserRouter>
     )
-    // expect(container.getByTestId('main-heading')).toHaveTextContent('Loft-Taxi')
     expect(container.innerHTML).toMatch('Loft-Taxi')
   })
 })

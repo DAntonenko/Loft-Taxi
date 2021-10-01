@@ -1,27 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { authenticate } from '../../store/actions/auth';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import './LoginForm.scss';
 
-export const LoginForm = ({ authenticate }) => {
-  LoginForm.propTypes = {
-    authenticate: PropTypes.func,
+export const LoginForm = () => {
+
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    const { email, password } = data;
+    dispatch(authenticate(email, password));
   }
 
   return (
     <form
       className='login-form'
-      onSubmit={(e) => {
-        e.preventDefault();
-        const emailInput = e.nativeEvent.target[0];
-        const passwordInput = e.nativeEvent.target[1];
-        authenticate(emailInput.value, passwordInput.value);
-      }}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className='login-form__form-title'>Войти</h2>
       <Input
@@ -30,7 +30,7 @@ export const LoginForm = ({ authenticate }) => {
         id='email'
         type='email'
         name='email'
-        placeholder='mail@mail.ru'
+        register={register}
       />
       <Input
         className='login-form__input'
@@ -39,6 +39,7 @@ export const LoginForm = ({ authenticate }) => {
         type='password'
         name='password'
         placeholder='*************'
+        register={register}
       />
       <Button
         className = 'login-form__forgot-password-button'
@@ -63,7 +64,4 @@ export const LoginForm = ({ authenticate }) => {
   )
 }
 
-export default connect(
-  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
-  { authenticate }
-)(LoginForm);
+export default LoginForm;

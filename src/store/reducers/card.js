@@ -8,23 +8,24 @@ const initialState = {
   expiryDate: localStorageData.expiryDate,
   cardName: localStorageData.cardName,
   cvc: localStorageData.cvc,
-  token: localStorageData.token,
-  error: localStorageData.error,
+  isCardData: localStorageData.isCardData,
+  error: null,
 };
 
 export default function card(state = initialState, action) {
   switch(action.type) {
     case SET_CARD: {
-      const { cardNumber, expiryDate, cardName, cvc, token } = action.payload;
-      setCardDataToLocalStorage(cardNumber, expiryDate, cardName, cvc, token);
+      const { cardNumber, expiryDate, cardName, cvc } = action.payload;
+      setCardDataToLocalStorage(cardNumber, expiryDate, cardName, cvc, true);
 
       return {
+        // ...state,
         cardNumber: cardNumber,
         expiryDate: expiryDate,
         cardName: cardName,
         cvc: cvc,
-        token: token,
-        error: '',
+        isCardData: true,
+        error: null,
       };
     }
 
@@ -35,7 +36,7 @@ export default function card(state = initialState, action) {
         expiryDate: '',
         cardName: '',
         cvc: '',
-        token: '',
+        isCardData: false,
         error: action.payload.error,
       };
     }
